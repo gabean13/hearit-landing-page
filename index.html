@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hEARit - 개발자를 위한 팟캐스트</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Prompt -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Pretendard Font -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              light: '#B677F3',
+              DEFAULT: '#AC5FF7',
+              dark: '#9533F5'
+            },
+            gray: {
+              'bg-deep': '#272C32',
+              'bg-surface': '#3B3F43',
+              'text-muted': '#B2B4B6',
+              'text-main': '#D6DADB',
+              'text-highlight': '#EFF1F2'
+            }
+          },
+          fontFamily: {
+            prompt: ['Prompt', 'sans-serif'],
+            pretendard: ['Pretendard', '-apple-system', 'BlinkMacSystemFont', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    .glow-purple {
+      box-shadow: 0 0 40px rgba(172, 95, 247, 0.3);
+    }
+
+    .glow-purple-text {
+      text-shadow: 0 0 30px rgba(172, 95, 247, 0.5);
+    }
+
+    .glassmorphism {
+      background: rgba(59, 63, 67, 0.6);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .waveform-bar {
+      animation: wave 1s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+      0%, 100% { height: 20%; }
+      50% { height: 100%; }
+    }
+
+    .review-scroll {
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .review-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    @keyframes float-shake {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    .animate-float-shake {
+      animation: float-shake 1.2s ease-in-out infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-bg-deep text-gray-text-main antialiased">
+
+<!-- 플로팅 버튼 -->
+<button
+  id="scrollToTop"
+  class="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50
+         w-14 h-14 md:w-20 md:h-20 rounded-full
+         bg-primary text-white
+         shadow-2xl glow-purple
+         flex items-center justify-center
+         text-xl md:text-3xl font-bold
+         opacity-0 pointer-events-none
+         transition-all duration-300
+         hover:scale-110 hover:bg-primary-light"
+>
+  ↑
+</button>
+<script>
+  const scrollBtn = document.getElementById('scrollToTop');
+
+  window.addEventListener('scroll', () => {
+    const nearBottom =
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 400;
+
+    if (window.scrollY > 300) {
+      scrollBtn.classList.remove('opacity-0', 'pointer-events-none');
+      scrollBtn.classList.add('opacity-100');
+
+      if (nearBottom) {
+        scrollBtn.classList.add('animate-float-shake');
+      } else {
+        scrollBtn.classList.remove('animate-float-shake');
+      }
+    } else {
+      scrollBtn.classList.add('opacity-0', 'pointer-events-none');
+      scrollBtn.classList.remove('opacity-100', 'animate-float-shake');
+    }
+  });
+
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+</script>
+
+<!-- Header -->
+<header class="fixed top-0 left-0 right-0 z-50 glassmorphism border-b border-gray-bg-surface">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 flex items-center justify-center">
+        <img src="img/logo.png" alt="hEARit Logo" class="w-10 h-10 object-contain">
+      </div>
+      <span class="text-gray-text-highlight font-prompt font-bold text-xl sm:text-2xl glow-purple-text">hEARit</span>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center px-6 pt-24 overflow-hidden">
+  <!-- Background Phone Image -->
+  <!-- Background Phone Image - 모바일에서 숨김 -->
+  <div class="absolute inset-0 hidden lg:flex items-center justify-center opacity-100">
+    <img src="img/hero-phone-bg.png" alt="hEARit Background" class="h-[80vh] object-contain">
+    <div class="absolute w-[400px] h-[800px] bg-gradient-to-br from-primary/10 to-primary-dark/10 rounded-[4rem] blur-3xl"></div>
+  </div>
+
+  <div class="max-w-6xl w-full relative z-10">
+    <div class="text-center mb-12">
+      <!-- Downloads Badge - Bigger -->
+      <div class="inline-flex items-center gap-3 glassmorphism px-8 py-4 rounded-full mb-8 border border-primary/20">
+        <div class="w-3 h-3 bg-primary rounded-full animate-pulse"></div>
+        <span class="text-gray-text-highlight text-2xl font-bold font-prompt">200+</span>
+        <span class="text-gray-text-muted text-lg font-medium">Downloads</span>
+      </div>
+
+      <!-- Main Heading with hEARit -->
+      <div class="mb-6">
+        <h1 class="font-prompt font-black text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-gray-text-highlight leading-tight">
+          Listen to
+        </h1>
+        <h1 class="font-prompt font-black text-5xl sm:text-6xl md:text-8xl lg:text-9xl leading-tight mb-4">
+          <span class="text-primary glow-purple-text">IT Insights</span>
+        </h1>
+        <p class="font-prompt font-semibold text-2xl sm:text-3xl md:text-4xl text-gray-text-muted">
+          with <span class="text-primary glow-purple-text">hEARit</span>
+        </p>
+      </div>
+
+      <p class="text-gray-text-muted text-lg md:text-xl max-w-2xl mx-auto mb-12">
+        글 대신, 팟캐스트로 쉽게 공부하자!
+        <br/>
+        빠르게 변하는 IT 트렌드와 기술 스택을 쉽게 들을 수 있습니다.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="https://apps.apple.com/kr/app/%ED%9E%88%EC%96%B4%EB%A6%BF-hearit-%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A5%BC-%EC%9C%84%ED%95%9C-it-%ED%8C%9F%EC%BA%90%EC%8A%A4%ED%8A%B8/id6756041112" target="_blank" class="bg-gradient-to-r from-primary to-primary-dark hover:from-primary-light hover:to-primary px-8 py-4 rounded-2xl text-white font-semibold transition-all glow-purple flex items-center justify-center gap-3">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 22 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.09997 22C7.78997 22.05 6.79997 20.68 5.95997 19.47C4.24997 17 2.93997 12.45 4.69997 9.39C5.56997 7.87 7.12997 6.91 8.81997 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+          </svg>
+          App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.onair.hearit&hl=ko" target="_blank" class="bg-gray-bg-surface hover:bg-gray-bg-surface/80 border border-primary/30 px-8 py-4 rounded-2xl text-gray-text-highlight font-semibold transition-all flex items-center justify-center gap-3">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/>
+          </svg>
+          Google Play
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bento Grid Features -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+
+    <!-- Card 1: Stats -->
+    <div class="bg-gray-bg-surface rounded-3xl p-8 hover:bg-gray-bg-surface/80 transition-all border border-primary/10 hover:border-primary/30 flex flex-col">
+      <div class="text-gray-text-highlight text-sm font-semibold mb-4">카테고리</div>
+      <div class="font-prompt font-black text-7xl text-gray-text-highlight mb-2">15+</div>
+      <p class="text-gray-text-muted text-sm">IT 트렌드, Spring, React, Kotlin, Database ...</p>
+      <div class="mt-auto">
+        <div class="text-primary text-sm font-semibold mb-4">팟캐스트</div>
+        <div class="font-prompt font-black text-7xl text-primary-light mb-2">150+</div>
+        <p class="text-gray-text-muted text-sm">스스로 생각하는 AI, Gemini 3<br>스프링부트 4.0.0 출시 ..</p>
+      </div>
+    </div>
+
+    <!-- Card 2: Trust -->
+    <div class="bg-gray-bg-surface rounded-3xl p-8 hover:bg-gray-bg-surface/80 transition-all border border-primary/10 hover:border-primary/30 flex flex-col justify-center items-center text-center">
+      <div class="w-20 h-20 bg-primary/20 rounded-full flex items-center justify-center mb-6 glow-purple">
+        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+      <h3 class="font-prompt font-bold text-2xl text-gray-text-highlight mb-4">직접 검증해 신뢰할 수 있는 <br> 자료만 제공합니다</h3>
+      <p class="text-gray-text-muted"> 공식 문서, 테코톡, 릴리즈 노트 ... </p>
+    </div>
+
+    <!-- Card 3: Player Preview -->
+    <div class="bg-gray-bg-surface rounded-3xl p-8 hover:bg-gray-bg-surface/80 transition-all border border-primary/10 hover:border-primary/30 flex flex-col">
+      <div class="text-primary text-sm font-semibold mb-4">1-MINUTE PREVIEW</div>
+      <h3 class="font-prompt font-bold text-2xl text-gray-text-highlight mb-6">팟캐스트를 들어보세요!</h3>
+
+      <div class="bg-gray-bg-deep rounded-2xl p-6 mt-auto">
+        <audio id="preview-audio" src="audio/os-preview.mp3"></audio>
+        <div class="flex items-center gap-4 mb-6">
+          <button id="play-btn" class="flex-shrink-0 w-14 h-14 bg-primary hover:bg-primary-light active:bg-primary-dark rounded-full flex items-center justify-center transition-all glow-purple" onclick="togglePlay()">
+            <svg id="play-icon" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            <svg id="pause-icon" class="w-6 h-6 text-white hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
+            </svg>
+          </button>
+          <div class="flex-1 min-w-0">
+            <div class="text-gray-text-highlight font-semibold truncate">운영체제</div>
+            <div class="text-gray-text-muted text-sm truncate">프로세스와 스레드, 컴퓨터 속 멀티 태스킹 비밀 대공개</div>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="mb-4">
+          <div class="w-full h-1 bg-gray-bg-surface rounded-full overflow-hidden">
+            <div id="progress-bar" class="h-full bg-primary transition-all duration-100" style="width: 0%"></div>
+          </div>
+        </div>
+
+        <!-- Waveform -->
+        <div id="waveform" class="flex items-center justify-center gap-1 h-12 mb-4">
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 30%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 50%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 70%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 40%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 60%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 80%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 50%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 70%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 40%;"></div>
+          <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 60%;"></div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-gray-text-muted">
+          <span id="current-time">0:00</span>
+          <span id="duration">1:00</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<script>
+  const audio = document.getElementById('preview-audio');
+  const playBtn = document.getElementById('play-btn');
+  const playIcon = document.getElementById('play-icon');
+  const pauseIcon = document.getElementById('pause-icon');
+  const progressBar = document.getElementById('progress-bar');
+  const waveform = document.querySelectorAll('#waveform div');
+
+  function togglePlay() {
+    if (audio.paused) {
+      audio.play();
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+      startWave();
+    } else {
+      audio.pause();
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+      stopWave();
+    }
+  }
+
+  function startWave() {
+    waveform.forEach((bar, i) => {
+      bar.classList.add('waveform-bar');
+      bar.style.animationDelay = `${i * 0.1}s`;
+      bar.style.opacity = '1';
+    });
+  }
+
+  function stopWave() {
+    waveform.forEach(bar => {
+      bar.classList.remove('waveform-bar');
+      bar.style.opacity = '0.5';
+    });
+  }
+
+  audio.addEventListener('loadedmetadata', () => {
+    document.getElementById('duration').innerText = formatTime(audio.duration);
+  });
+
+  audio.addEventListener('timeupdate', () => {
+    const progress = (audio.currentTime / audio.duration) * 100;
+    progressBar.style.width = progress + '%';
+    document.getElementById('current-time').innerText = formatTime(audio.currentTime);
+  });
+
+  audio.addEventListener('ended', () => {
+    playIcon.classList.remove('hidden');
+    pauseIcon.classList.add('hidden');
+    stopWave();
+    progressBar.style.width = '0%';
+  });
+
+  function formatTime(sec) {
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60).toString().padStart(2, '0');
+    return `${m}:${s}`;
+  }
+</script>
+
+<!-- Product Introduction with Scroll Animation -->
+<section class="relative">
+  <!-- Sticky Container -->
+  <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+    <div class="max-w-7xl mx-auto px-6 w-full">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+        <!-- Left: Dynamic Text Content -->
+        <div class="order-2 lg:order-1">
+          <h2 class="font-prompt font-bold text-4xl md:text-5xl text-gray-text-highlight mb-6">
+            빠르게 변하는 IT..<br/>
+            <span class="text-primary">팟캐스트로 쉽게 공부하자!</span>
+          </h2>
+
+          <p class="text-gray-text-main text-lg leading-relaxed mb-8">
+            IT 트렌드와 기술 스택을 쉽게 들을 수 있는 팟캐스트 서비스입니다.
+            <br>
+            복잡한 문서나 긴 글 대신, 원하는 정보를 들으며  IT 세상을 따라가 보세요.
+          </p>
+
+          <!-- Feature Cards -->
+          <div class="space-y-6">
+            <div id="feature-0" class="feature-card flex gap-4 p-4 rounded-2xl transition-all duration-500 opacity-30">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-text-highlight mb-2">지금 딱, 당신이 좋아할 콘텐츠!</h3>
+                <p class="text-gray-text-muted text-sm">관심 있는 카테고리의 팟캐스트를 한눈에 보고, 바로 들어보세요.
+                  <br>새로 올라온 팟캐스트부터 즐겨 듣던 콘텐츠까지 놓치지 않고 만나볼 수 있어요.</p>
+              </div>
+            </div>
+
+            <div id="feature-1" class="feature-card flex gap-4 p-4 rounded-2xl transition-all duration-500 opacity-30">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-text-highlight mb-2">핵심 CS 지식 & 기술 문서</h3>
+                <p class="text-gray-text-muted text-sm">혼자 공부하기 어려운 CS 지식을 음성으로 쉽게!<br> Java, Kotlin, TDD 등 다양한 분야를 만나보세요</p>
+              </div>
+            </div>
+
+            <div id="feature-2" class="feature-card flex gap-4 p-4 rounded-2xl transition-all duration-500 opacity-30">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-text-highlight mb-2">짧게, 빠르게, 자유롭게!</h3>
+                <p class="text-gray-text-muted text-sm">위아래로 스크롤하며 다양한 팟캐스트를 탐색해보세요.
+                  <br>당신의 취향에 맞는 IT 콘텐츠를 숏폼으로 발견할 수 있습니다.</p>
+              </div>
+            </div>
+
+            <div id="feature-3" class="feature-card flex gap-4 p-4 rounded-2xl transition-all duration-500 opacity-30">
+              <div class="flex-shrink-0 w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-semibold text-gray-text-highlight mb-2">듣는 재미에 보는 재미까지!</h3>
+                <p class="text-gray-text-muted text-sm">스크립트와 출처를 함께 보며 더 풍성하게 즐겨보세요.
+                  <br>요약과 참고 자료까지 한눈에 확인할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Sticky Phone with Changing Screens -->
+        <div class="order-1 lg:order-2 flex justify-center mb-8 lg:mb-0">
+          <div class="relative">
+            <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
+
+            <div class="relative w-[250px] sm:w-[300px] lg:w-[400px] h-[555px] sm:h-[666px] lg:h-[889px] bg-gray-bg-deep rounded-[2rem] lg:rounded-[3rem] border-4 lg:border-8 border-gray-bg-deep shadow-2xl overflow-hidden">
+              <!-- Screen 0 -->
+              <div id="screen-0" class="phone-screen absolute inset-0 transition-opacity duration-700 opacity-100">
+                <img src="img/home_screen.gif" alt="IT Trends Screen" class="w-full h-full object-cover">
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/30 to-primary-dark/30">
+                  <span class="text-white font-prompt text-xl lg:text-2xl">Screen 1</span>
+                </div>
+              </div>
+
+              <!-- Screen 1 -->
+              <div id="screen-1" class="phone-screen absolute inset-0 transition-opacity duration-700 opacity-0">
+                <img src="img/screen_category.gif" alt="CS Knowledge Screen" class="w-full h-full object-cover">
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-blue-500/30 to-blue-700/30">
+                  <span class="text-white font-prompt text-xl lg:text-2xl">Screen 2</span>
+                </div>
+              </div>
+
+              <!-- Screen 2 -->
+              <div id="screen-2" class="phone-screen absolute inset-0 transition-opacity duration-700 opacity-0">
+                <img src="img/screen_short.gif" alt="Recommendation Screen" class="w-full h-full object-cover">
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-green-500/30 to-green-700/30">
+                  <span class="text-white font-prompt text-xl lg:text-2xl">Screen 3</span>
+                </div>
+              </div>
+
+              <!-- Screen 3 -->
+              <div id="screen-3" class="phone-screen absolute inset-0 transition-opacity duration-700 opacity-0">
+                <img src="img/screen_listen.gif" alt="Quick Access Screen" class="w-full h-full object-cover">
+                <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-orange-500/30 to-orange-700/30">
+                  <span class="text-white font-prompt text-xl lg:text-2xl">Screen 4</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- Spacer for Scroll -->
+  <div class="h-[200vh] lg:h-[400vh]"></div>
+</section>
+<script>
+  let currentScreen = 0;
+
+  window.addEventListener('scroll', () => {
+    const section = document.querySelector('section[class="relative"]');
+    if (!section) return;
+
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const scrollY = window.scrollY;
+
+    // Calculate scroll progress within section (0 to 1)
+    const progress = Math.max(0, Math.min(1, (scrollY - sectionTop) / (sectionHeight - window.innerHeight)));
+
+    // Determine which screen should be shown (0-3)
+    const newScreen = Math.min(3, Math.floor(progress * 4));
+
+    if (newScreen !== currentScreen) {
+      // Hide all screens and features
+      for (let i = 0; i < 4; i++) {
+        document.getElementById(`screen-${i}`).style.opacity = '0';
+        const feature = document.getElementById(`feature-${i}`);
+        feature.style.opacity = '0.3';
+        feature.style.backgroundColor = 'transparent';
+      }
+
+      // Show current screen and highlight feature
+      document.getElementById(`screen-${newScreen}`).style.opacity = '1';
+      const activeFeature = document.getElementById(`feature-${newScreen}`);
+      activeFeature.style.opacity = '1';
+      activeFeature.style.backgroundColor = 'rgba(172, 95, 247, 0.1)';
+
+      currentScreen = newScreen;
+    }
+  });
+
+  // Initialize first screen
+  document.getElementById('feature-0').style.opacity = '1';
+  document.getElementById('feature-0').style.backgroundColor = 'rgba(172, 95, 247, 0.1)';
+</script>
+
+<!-- Social Proof -->
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <h2 class="font-prompt font-bold text-4xl text-gray-text-highlight text-center mb-12">실제 사용 후기</h2>
+
+  <!-- 첫번째 후기 -->
+  <div class="flex gap-6 overflow-x-auto review-scroll pb-6">
+    <div class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      <div class="flex gap-1 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-text-main mb-4">IT 트렌드 공부하기 좋아요
+        <br>
+        자투리시간에 맨날 유튜브 쇼츠만 보면서 시간 낭비하는 것 같았는데 이런거라도 들으니까 좋아요! 자주 쓸게요</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
+        <div>
+          <div class="text-gray-text-highlight font-semibold text-sm">산뜻한 하마</div>
+          <div class="text-gray-text-muted text-xs">iPhone 유저</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 두번째 후기 -->
+    <div class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      <div class="flex gap-1 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-text-main mb-4">요즘처럼 지식을 끊임없이 습득해야 하는 시대에 정말 필수인거 같아요.
+        <br>
+        특히 탐색 탭에서도 자막을 같이 보여줘서 소리를 못듣는 상황에서도 읽어볼수 있다는 점이 좋았어요. 좋은서비스 만들어주셔서 감사합니다!</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
+        <div>
+          <div class="text-gray-text-highlight font-semibold text-sm">포근한 수달</div>
+          <div class="text-gray-text-muted text-xs">백엔드 개발자</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 세번째 후기 -->
+    <div class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      <div class="flex gap-1 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-text-main mb-4">스레드에서 봐서 깔았는데 괜찮네요 ㅎㅎ
+        <br>
+        CS 공부하는 중인데 유용한 컨텐츠가 많네용 디자인도 넘 예쁘고 잘 쓸게요!!</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
+        <div>
+          <div class="text-gray-text-highlight font-semibold text-sm">활발한 치타</div>
+          <div class="text-gray-text-muted text-xs">Galaxy 유저</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 네번째 후기 -->
+    <div class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      <div class="flex gap-1 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-text-main mb-4">IT 트랜드같은거 편하게 들을수있어서 좋아요<br>
+        공부는하고싶은데 귀찮을 때 자주 써요ㅎㅎ 특히 숏츠가 진짜 좋음!</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
+        <div>
+          <div class="text-gray-text-highlight font-semibold text-sm">포근한 수달</div>
+          <div class="text-gray-text-muted text-xs">Galaxy 유저</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 다섯번째 후기 -->
+    <div class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      <div class="flex gap-1 mb-4">
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+      </div>
+      <p class="text-gray-text-main mb-4">너무 좋은 서비스! 개발자들이 듣기 좋은 서비스인 것 같아요
+        <br>매일들을둣</p>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
+        <div>
+          <div class="text-gray-text-highlight font-semibold text-sm">성실한 비글</div>
+          <div class="text-gray-text-muted text-xs">백엔드 개발자</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-bg-surface border-t border-gray-bg-deep py-12">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Left: Logo & Description -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-primary rounded-xl glow-purple flex items-center justify-center">
+          <img src="img/logo.png" alt="hEARit Logo" class="w-10 h-10 object-contain">
+        </div>
+        <div>
+          <span class="text-gray-text-highlight font-prompt font-bold text-xl">hEARit</span>
+          <p class="text-gray-text-muted text-sm">개발자를 위한 팟캐스트</p>
+        </div>
+      </div>
+
+      <!-- Center: Made by -->
+      <div class="text-center">
+        <p class="text-gray-text-muted text-sm">
+          Made with <span class="text-primary">♥</span> by
+          <span class="text-gray-text-highlight font-semibold"><br/>미플,조이,비비<br/>멍구,사나,가콩,벡터</span>
+        </p>
+        <p class="text-gray-text-muted text-xs mt-1">© 2025 hEARit. All rights reserved.</p>
+      </div>
+
+      <!-- Right: Social Links -->
+      <div class="flex items-center gap-4">
+        <a href="https://github.com/woowacourse-teams/2025-hEARit" target="_blank" rel="noopener noreferrer"
+           class="w-10 h-10 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group">
+          <svg class="w-5 h-5 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </a>
+
+        <a href="https://velog.io/@hearit/posts" target="_blank" rel="noopener noreferrer"
+           class="w-10 h-10 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group">
+          <svg class="w-5 h-5 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.149-1.711-9.628h-2.25V6.25h4.755z"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</footer>
