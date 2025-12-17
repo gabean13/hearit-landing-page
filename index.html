@@ -238,13 +238,13 @@
     <div class="bg-gray-bg-surface
     shadow-[0_0_0_1px_rgba(172,95,247,0.35),0_20px_60px_rgba(0,0,0,0.6)]
     rounded-3xl p-8 hover:bg-gray-bg-surface/80 transition-all border border-primary/10 hover:border-primary/30 flex flex-col items-center text-center">
-      <div class="font-wanted text-gray-text-highlight text-sm font-semibold mb-4">카테고리</div>
+      <div class="font-wanted text-gray-text-highlight text-xl font-semibold mb-4">카테고리</div>
       <div class="font-prompt font-black text-7xl text-gray-text-highlight mb-2">
         <span class="count-up" data-target="15">0</span>+
       </div>
       <p class="font-wanted text-gray-text-muted text-sm">IT 트렌드, Spring, React, Kotlin, Database ...</p>
       <div class="mt-auto pt-8">
-        <div class="font-wanted text-primary text-sm font-semibold mb-4">팟캐스트</div>
+        <div class="font-wanted text-primary text-xl font-semibold mb-4">팟캐스트</div>
         <div class="font-prompt font-black text-7xl text-primary-light mb-2">
           <span class="count-up" data-target="150">0</span>+
         </div>
@@ -259,7 +259,7 @@
                 hover:border-primary
                 shadow-[0_0_0_1px_rgba(172,95,247,0.35),0_20px_60px_rgba(0,0,0,0.6)]
                 flex flex-col items-center justify-center text-center">
-      <div class="font-wanted text-gray-text-highlight text-sm font-semibold mb-4">이미 많은 분들이 사용 중에요!</div>
+      <div class="font-wanted text-gray-text-highlight text-xl font-semibold mb-4">이미 많은 분들이 사용 중에요!</div>
       <div class="font-prompt font-black text-7xl text-gray-text-highlight mb-2
             tracking-tight drop-shadow-[0_4px_24px_rgba(172,95,247,0.35)]">
         <span class="count-up" data-target="200">0</span>+
@@ -272,18 +272,18 @@
     </div>
 
     <!-- Card 3: Player Preview -->
-    <div
-      class="bg-gray-bg-surface
-      shadow-[0_0_0_1px_rgba(172,95,247,0.35),0_20px_60px_rgba(0,0,0,0.6)]
-      rounded-3xl p-8 hover:bg-gray-bg-surface/80 transition-all border border-primary/10 hover:border-primary/30 flex flex-col">
-      <div class="font-wanted text-primary text-sm font-semibold mb-4">1-MINUTE PREVIEW</div>
-      <h3 class="font-wanted font-bold text-2xl text-gray-text-highlight mb-6">팟캐스트를 들어보세요!</h3>
-
-      <div class="bg-gray-bg-deep rounded-2xl p-6 mt-auto">
+    <div class="relative bg-gray-bg-deep/60
+  shadow-[0_0_0_1px_rgba(172,95,247,0.35),0_30px_80px_rgba(0,0,0,0.7)]
+  rounded-3xl p-8 transition-all
+  border border-primary/20 hover:border-primary/40
+  flex flex-col items-center justify-center text-center
+  overflow-hidden">
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="rounded-2xl p-6 w-full max-w-sm">
         <audio id="preview-audio" src="audio/os-preview.mp3"></audio>
         <div class="flex items-center gap-4 mb-6">
           <button id="play-btn"
-                  class="flex-shrink-0 w-14 h-14 bg-primary hover:bg-primary-light active:bg-primary-dark rounded-full flex items-center justify-center transition-all glow-purple"
+                  class="flex-shrink-0 w-14 h-14 bg-primary hover:bg-primary-light active:bg-primary-dark rounded-full flex items-center justify-center transition-all glow-purple shadow-[0_0_30px_rgba(172,95,247,0.6)] hover:scale-110"
                   onclick="togglePlay()">
             <svg id="play-icon" class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
               <path d="M8 5v14l11-7z"/>
@@ -293,8 +293,8 @@
             </svg>
           </button>
           <div class="flex-1 min-w-0">
-            <div class="font-wanted text-gray-text-highlight font-semibold truncate">운영체제</div>
-            <div class="font-wanted text-gray-text-muted text-sm truncate">프로세스와 스레드, 컴퓨터 속 멀티 태스킹 비밀 대공개</div>
+            <div class="font-wanted text-gray-text-highlight text-lg font-semibold truncate">팟캐스트를 들어보세요!</div>
+            <div class="font-wanted text-primary text-sm truncate">프로세스와 스레드</div>
           </div>
         </div>
 
@@ -306,7 +306,7 @@
         </div>
 
         <!-- Waveform -->
-        <div id="waveform" class="flex items-center justify-center gap-1 h-12 mb-4">
+        <div id="waveform" class="flex items-center justify-center gap-1 h-12 mb-4 opacity-80">
           <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 30%;"></div>
           <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 50%;"></div>
           <div class="w-1 bg-primary/50 rounded-full transition-all" style="height: 70%;"></div>
@@ -325,9 +325,9 @@
         </div>
       </div>
     </div>
-
   </div>
 </section>
+<!-- 미리듣기 재생 스크립트 -->
 <script>
   const audio = document.getElementById('preview-audio');
   const playBtn = document.getElementById('play-btn');
@@ -388,6 +388,7 @@
     return `${m}:${s}`;
   }
 </script>
+<!-- 숫자 카운트 스크립트 -->
 <script>
   // Ease-out 함수: 처음엔 빠르다가 마지막에 천천히 (Cubic)
   function easeOutCubic(x) {
@@ -805,35 +806,45 @@
 
 <!-- Social Proof -->
 <section class="max-w-7xl mx-auto px-1 py-20">
-  <h2 class="font-wanted font-black text-4xl text-gray-text-highlight text-center mb-12">실제 사용 후기</h2>
+  <div class="text-center mb-16">
+    <div class="inline-block mb-4">
+      <span class="text-primary text-sm font-semibold tracking-wider uppercase">Review</span>
+    </div>
+    <h2 class="font-wanted font-black text-4xl text-gray-text-highlight mb-4">
+      실제 사용 후기
+    </h2>
+  </div>
 
   <!-- 첫번째 후기 -->
   <div id="review-track" class="flex gap-6 overflow-x-auto review-scroll pb-6">
     <div
-      class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      class="review-card relative min-w-[320px] sm:min-w-[400px] lg:min-w-[450px]
+         bg-gray-bg-surface rounded-2xl p-6 border border-primary/10
+         transition-all duration-300
+         overflow-hidden">
       <div class="flex gap-1 mb-4">
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
       </div>
-      <p class="font-wanted text-gray-text-main mb-4">IT 트렌드 공부하기 좋아요
+      <p class="font-wanted text-gray-text-main mb-4 leading-relaxed">IT 트렌드 공부하기 좋아요
         <br>
         자투리시간에 맨날 유튜브 쇼츠만 보면서 시간 낭비하는 것 같았는데 이런거라도 들으니까 좋아요! 자주 쓸게요</p>
       <div class="flex items-center gap-3">
@@ -847,7 +858,10 @@
 
     <!-- 두번째 후기 -->
     <div
-      class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      class="review-card relative min-w-[320px] sm:min-w-[400px] lg:min-w-[450px]
+         bg-primary/10 rounded-2xl p-6 border border-primary/10
+         transition-all duration-300
+         overflow-hidden">
       <div class="flex gap-1 mb-4">
         <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -870,7 +884,7 @@
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
       </div>
-      <p class="font-wanted text-gray-text-main mb-4">요즘처럼 지식을 끊임없이 습득해야 하는 시대에 정말 필수인거 같아요.
+      <p class="font-wanted text-gray-text-main mb-4 leading-relaxed">요즘처럼 지식을 끊임없이 습득해야 하는 시대에 정말 필수인거 같아요.
         <br>
         특히 탐색 탭에서도 자막을 같이 보여줘서 소리를 못듣는 상황에서도 읽어볼수 있다는 점이 좋았어요. 좋은서비스 만들어주셔서 감사합니다!</p>
       <div class="font-wanted flex items-center gap-3">
@@ -884,30 +898,33 @@
 
     <!-- 세번째 후기 -->
     <div
-      class="font-wanted min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      class="review-card font-wanted relative min-w-[320px] sm:min-w-[400px] lg:min-w-[450px]
+         bg-gradient-to-br from-gray-bg-surface to-primary/10 rounded-2xl p-6 border border-primary/10
+         transition-all duration-300
+         overflow-hidden">
       <div class="flex gap-1 mb-4">
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
       </div>
-      <p class="text-gray-text-main mb-4">스레드에서 봐서 깔았는데 괜찮네요 ㅎㅎ
+      <p class="text-gray-text-main mb-4 leading-relaxed">스레드에서 봐서 깔았는데 괜찮네요 ㅎㅎ
         <br>
         CS 공부하는 중인데 유용한 컨텐츠가 많네용 디자인도 넘 예쁘고 잘 쓸게요!!</p>
       <div class="flex items-center gap-3">
@@ -921,7 +938,10 @@
 
     <!-- 네번째 후기 -->
     <div
-      class="font-wanted min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      class="review-card font-wanted relative min-w-[320px] sm:min-w-[400px] lg:min-w-[450px]
+         bg-primary/10 rounded-2xl p-6 border border-primary/10
+         transition-all duration-300
+         overflow-hidden">
       <div class="flex gap-1 mb-4">
         <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
           <path
@@ -944,7 +964,7 @@
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
       </div>
-      <p class="text-gray-text-main mb-4">IT 트랜드같은거 편하게 들을수있어서 좋아요<br>
+      <p class="text-gray-text-main mb-4 leading-relaxed">IT 트랜드같은거 편하게 들을수있어서 좋아요<br>
         공부는하고싶은데 귀찮을 때 자주 써요ㅎㅎ 특히 숏츠가 진짜 좋음!</p>
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
@@ -957,30 +977,33 @@
 
     <!-- 다섯번째 후기 -->
     <div
-      class="font-wanted min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
+      class="review-card font-wanted relative min-w-[320px] sm:min-w-[400px] lg:min-w-[450px]
+         bg-gradient-to-br from-gray-bg-surface to-primary/10 rounded-2xl p-6 border border-primary/10
+         transition-all duration-300
+         overflow-hidden">
       <div class="flex gap-1 mb-4">
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
-        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="w-5 h-5 text-indigo-400" fill="currentColor" viewBox="0 0 20 20">
           <path
             d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
         </svg>
       </div>
-      <p class="text-gray-text-main mb-4">너무 좋은 서비스! 개발자들이 듣기 좋은 서비스인 것 같아요
+      <p class="text-gray-text-main mb-4 leading-relaxed">너무 좋은 서비스! 개발자들이 듣기 좋은 서비스인 것 같아요
         <br>매일들을둣</p>
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-primary/20 rounded-full"></div>
@@ -1023,112 +1046,173 @@
 </script>
 
 <!-- FAQ Section -->
-<section class="max-w-5xl mx-auto px-6 py-20">
-  <h2 class="font-wanted font-black text-4xl text-gray-text-highlight text-center mb-12">
-    자주 묻는 질문
-  </h2>
+<section class="max-w-7xl mx-auto px-6 py-20">
+  <div class="text-center mb-16">
+    <div class="inline-block mb-4">
+      <span class="text-primary text-sm font-semibold tracking-wider uppercase">FAQ</span>
+    </div>
+    <h2 class="font-wanted font-black text-4xl text-gray-text-highlight mb-4">
+      자주 묻는 질문
+    </h2>
+    <p class="text-gray-text-muted text-lg">궁금한 점이 있으신가요? 여기서 답을 찾아보세요</p>
+  </div>
 
   <div class="space-y-4">
 
     <!-- FAQ 1 -->
-    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
-      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(0)">
-        <span class="font-semibold text-gray-text-highlight text-lg">Q. 회원가입이 필요한가요?</span>
-        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div
+      class="faq-item bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+      <button class="faq-button w-full px-8 py-6 flex items-center justify-between text-left group"
+              onclick="toggleFAQ(0)">
+        <div class="flex items-center gap-4 flex-1">
+          <div
+            class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+            <span class="text-primary font-prompt font-bold text-lg">1</span>
+          </div>
+          <span class="font-semibold text-gray-text-highlight text-lg group-hover:text-primary transition-colors">회원가입이 필요한가요?</span>
+        </div>
+        <svg class="faq-icon w-6 h-6 text-primary transition-all duration-300" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
-        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
-          비회원도 바로 이용할 수 있습니다. 회원가입 시 북마크, 재생 기록 관리 기능을 더 편리하게 사용할 수 있습니다.
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-8 pb-6 text-gray-text-main leading-relaxed border-t border-primary/10 pt-4 mx-8">
+          <p class="animate-fade-in">비회원도 바로 이용할 수 있습니다. 회원가입 시 북마크, 재생 기록 관리 기능을 더 편리하게 사용할 수 있습니다.</p>
         </div>
       </div>
     </div>
 
     <!-- FAQ 2 -->
-    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
-      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(1)">
-        <span class="font-semibold text-gray-text-highlight text-lg">Q. 콘텐츠는 누가 만드나요?</span>
-        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div
+      class="faq-item bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+      <button class="faq-button w-full px-8 py-6 flex items-center justify-between text-left group"
+              onclick="toggleFAQ(1)">
+        <div class="flex items-center gap-4 flex-1">
+          <div
+            class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+            <span class="text-primary font-prompt font-bold text-lg">2</span>
+          </div>
+          <span class="font-semibold text-gray-text-highlight text-lg group-hover:text-primary transition-colors">콘텐츠는 누가 만드나요?</span>
+        </div>
+        <svg class="faq-icon w-6 h-6 text-primary transition-all duration-300" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
-        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
-          hEARit 팀이 공식 문서, 기술 블로그, 컨퍼런스 발표 등을 엄선하여 NotebookLM을 통해 제작합니다.
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-8 pb-6 text-gray-text-main leading-relaxed border-t border-primary/10 pt-4 mx-8">
+          <p class="animate-fade-in">hEARit 팀이 공식 문서, 기술 블로그, 컨퍼런스 발표 등을 엄선하여 NotebookLM을 통해 제작합니다.</p>
         </div>
       </div>
     </div>
 
     <!-- FAQ 3 -->
-    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
-      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(2)">
-        <span class="font-semibold text-gray-text-highlight text-lg">Q. 어떤 사람에게 추천하나요?</span>
-        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div
+      class="faq-item bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+      <button class="faq-button w-full px-8 py-6 flex items-center justify-between text-left group"
+              onclick="toggleFAQ(2)">
+        <div class="flex items-center gap-4 flex-1">
+          <div
+            class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+            <span class="text-primary font-prompt font-bold text-lg">3</span>
+          </div>
+          <span class="font-semibold text-gray-text-highlight text-lg group-hover:text-primary transition-colors">어떤 사람에게 추천하나요?</span>
+        </div>
+        <svg class="faq-icon w-6 h-6 text-primary transition-all duration-300" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
-        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
-          출퇴근 시간을 활용하고 싶은 개발자, 최신 IT 트렌드를 빠르게 따라가고 싶은 분, 긴 글 읽기가 부담스러운 분들에게 추천합니다.
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-8 pb-6 text-gray-text-main leading-relaxed border-t border-primary/10 pt-4 mx-8">
+          <p class="animate-fade-in">출퇴근 시간을 활용하고 싶은 개발자, 최신 IT 트렌드를 빠르게 따라가고 싶은 분, 긴 글 읽기가 부담스러운 분들에게 추천합니다.</p>
         </div>
       </div>
     </div>
 
     <!-- FAQ 4 -->
-    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
-      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(3)">
-        <span class="font-semibold text-gray-text-highlight text-lg">Q. 오프라인에서도 들을 수 있나요?</span>
-        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div
+      class="faq-item bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+      <button class="faq-button w-full px-8 py-6 flex items-center justify-between text-left group"
+              onclick="toggleFAQ(3)">
+        <div class="flex items-center gap-4 flex-1">
+          <div
+            class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+            <span class="text-primary font-prompt font-bold text-lg">4</span>
+          </div>
+          <span class="font-semibold text-gray-text-highlight text-lg group-hover:text-primary transition-colors">오프라인에서도 들을 수 있나요?</span>
+        </div>
+        <svg class="faq-icon w-6 h-6 text-primary transition-all duration-300" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
-        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
-          현재는 온라인 스트리밍만 지원합니다. 오프라인 다운로드 기능은 곧 추가될 예정입니다.
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-8 pb-6 text-gray-text-main leading-relaxed border-t border-primary/10 pt-4 mx-8">
+          <p class="animate-fade-in">현재는 온라인 스트리밍만 지원합니다. 오프라인 다운로드 기능은 곧 추가될 예정입니다.</p>
         </div>
       </div>
     </div>
 
     <!-- FAQ 5 -->
-    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
-      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(4)">
-        <span class="font-semibold text-gray-text-highlight text-lg">Q. 무료인가요?</span>
-        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <div
+      class="faq-item bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+      <button class="faq-button w-full px-8 py-6 flex items-center justify-between text-left group"
+              onclick="toggleFAQ(4)">
+        <div class="flex items-center gap-4 flex-1">
+          <div
+            class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center group-hover:bg-primary/20 transition-all group-hover:scale-110">
+            <span class="text-primary font-prompt font-bold text-lg">5</span>
+          </div>
+          <span
+            class="font-semibold text-gray-text-highlight text-lg group-hover:text-primary transition-colors">무료인가요?</span>
+        </div>
+        <svg class="faq-icon w-6 h-6 text-primary transition-all duration-300" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </button>
-      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
-        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
-          모든 콘텐츠는 무료입니다. 현재 수익 창출을 하고 있지 않습니다. 편하게 사용해주세요!
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="px-8 pb-6 text-gray-text-main leading-relaxed border-t border-primary/10 pt-4 mx-8">
+          <p class="animate-fade-in">모든 콘텐츠는 무료입니다. 현재 수익 창출을 하고 있지 않습니다. 편하게 사용해주세요!</p>
         </div>
       </div>
     </div>
 
   </div>
 </section>
-
 <script>
   function toggleFAQ(index) {
     const allContents = document.querySelectorAll('.faq-content');
     const allIcons = document.querySelectorAll('.faq-icon');
+    const allItems = document.querySelectorAll('.faq-item');
     const currentContent = allContents[index];
     const currentIcon = allIcons[index];
+    const currentItem = allItems[index];
 
     // 클릭한 FAQ가 이미 열려있으면 닫기
     if (currentContent.style.maxHeight && currentContent.style.maxHeight !== '0px') {
       currentContent.style.maxHeight = '0px';
       currentIcon.style.transform = 'rotate(0deg)';
+      currentItem.style.transform = 'scale(1)';
     } else {
       // 모든 FAQ 닫기
       allContents.forEach((content, i) => {
         content.style.maxHeight = '0px';
         allIcons[i].style.transform = 'rotate(0deg)';
+        allItems[i].style.transform = 'scale(1)';
       });
 
       // 클릭한 FAQ 열기
       currentContent.style.maxHeight = currentContent.scrollHeight + 'px';
       currentIcon.style.transform = 'rotate(180deg)';
+      currentItem.style.transform = 'scale(1.02)';
+
+      // 부드럽게 스크롤
+      setTimeout(() => {
+        currentItem.scrollIntoView({behavior: 'smooth', block: 'nearest'});
+      }, 100);
     }
   }
 </script>
@@ -1151,15 +1235,17 @@
       <!-- Center: Info -->
       <div class="text-center lg:text-left">
         <p class="text-gray-text-muted text-xs lg:text-sm">
-          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c380c7ad87ee902f131a26" class="hover:text-primary transition-colors">이용약관</a>
+          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c380c7ad87ee902f131a26"
+             class="hover:text-primary transition-colors">이용약관</a>
           <span class="mx-2">|</span>
-          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c3809abc3bf37ac3b148f7" class="hover:text-primary transition-colors">개인정보처리방침</a>
+          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c3809abc3bf37ac3b148f7"
+             class="hover:text-primary transition-colors">개인정보처리방침</a>
         </p>
         <p class="text-gray-text-muted text-xs mt-2">
           Made with <span class="text-primary">♥</span> by 미플,조이,비비,멍구,사나,가콩,벡터
         </p>
         <p class="text-gray-text-muted text-xs mt-2">
-        <span class="block lg:inline mt-1 lg:mt-0">© 2025 hEARit. All rights reserved.</span>
+          <span class="block lg:inline mt-1 lg:mt-0">© 2025 hEARit. All rights reserved.</span>
         </p>
       </div>
 
@@ -1168,24 +1254,30 @@
         <a href="mailto:hearit2025@gmail.com"
            class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
            title="이메일 문의">
-          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="none"
+               stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
           </svg>
         </a>
 
         <a href="https://github.com/woowacourse-teams/2025-hEARit" target="_blank" rel="noopener noreferrer"
            class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
            title="GitHub">
-          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor"
+               viewBox="0 0 24 24">
+            <path
+              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
         </a>
 
         <a href="https://velog.io/@hearit/posts" target="_blank" rel="noopener noreferrer"
            class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
            title="Velog">
-          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.149-1.711-9.628h-2.25V6.25h4.755z"/>
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor"
+               viewBox="0 0 24 24">
+            <path
+              d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.149-1.711-9.628h-2.25V6.25h4.755z"/>
           </svg>
         </a>
       </div>
