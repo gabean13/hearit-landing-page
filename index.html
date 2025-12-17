@@ -3,7 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>hEARit - 개발자를 위한 팟캐스트</title>
+  <title>hEARit</title>
+  <!-- Favicon -->
+  <link rel="icon" href="img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
+  ㅁㅇ
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -253,14 +259,14 @@
                 hover:border-primary
                 shadow-[0_0_0_1px_rgba(172,95,247,0.35),0_20px_60px_rgba(0,0,0,0.6)]
                 flex flex-col items-center justify-center text-center">
-      <div class="font-wanted text-gray-text-highlight text-sm font-semibold mb-4">다운로드</div>
-        <div class="font-prompt font-black text-7xl text-gray-text-highlight mb-2
+      <div class="font-wanted text-gray-text-highlight text-sm font-semibold mb-4">이미 많은 분들이 사용 중에요!</div>
+      <div class="font-prompt font-black text-7xl text-gray-text-highlight mb-2
             tracking-tight drop-shadow-[0_4px_24px_rgba(172,95,247,0.35)]">
         <span class="count-up" data-target="200">0</span>+
       </div>
       <p class="font-wanted text-gray-text-muted text-sm leading-relaxed">
         개발자들이 실제로 선택한 팟캐스트
-        <br />
+        <br/>
         App Store · Google Play 누적 다운로드
       </p>
     </div>
@@ -437,17 +443,126 @@
   });
 </script>
 
+<!-- Why hEARit Section -->
+<section class="max-w-7xl mx-auto px-6 pt-32 pb-24 my-16">
+  <!-- Header -->
+  <h2 class="font-black text-4xl md:text-5xl text-gray-text-highlight mb-8">
+    왜 <span class="fond-prompt text-primary glow-purple-text">hEARit</span>인가
+  </h2>
+
+  <!-- Main Text Content -->
+  <div class="font-wanted space-y-2 mb-8">
+    <p class="text-gray-text-main text-lg leading-relaxed">
+      기술을 공부하는 방식은 읽는 것에 머물러 있습니다.
+    </p>
+
+    <p class="text-gray-text-main text-lg leading-relaxed">
+      하지만 이해가 필요한 개념일수록 설명과 맥락을 '<span class="text-primary font-semibold">말</span>'<span
+      class="text-primary font-semibold">로 들을 때</span> 더 쉽게 와닿습니다.
+    </p>
+
+    <p class="text-gray-text-main text-lg leading-relaxed">
+      hEARit은 정보를 나열하지 않고, <span class="text-primary font-semibold">사람에게 설명하듯 기술을 이야기</span>합니다.
+    </p>
+  </div>
+
+  <div class="flex flex-col md:flex-row gap-8 items-center md:items-stretch justify-center">
+    <!-- 이런 경험 있지 않나요 박스 -->
+    <div class="w-full flex-1 bg-red-500/10 rounded-3xl p-8 border border-red-500/20 flex flex-col">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-wanted font-bold text-xl md:text-2xl text-gray-text-highlight break-keep">
+          이런 경험 있지 않나요?
+        </h3>
+      </div>
+      <div class="font-wanted space-y-4 flex-1">
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-red-400 rounded-full mt-2.5 flex-shrink-0"></div>
+          <p class="text-gray-text-main flex-1 break-keep">공식 문서를 읽다 흐름을 놓친 적</p>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-red-400 rounded-full mt-2.5 flex-shrink-0"></div>
+          <p class="text-gray-text-main flex-1 break-keep">이동 중 공부하려다 화면을 포기한 적</p>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-red-400 rounded-full mt-2.5 flex-shrink-0"></div>
+          <p class="text-gray-text-main flex-1 break-keep">저장만 해두고 다시 열지 않은 기술 콘텐츠</p>
+        </div>
+      </div>
+    </div>
+    <!-- 화살표 -->
+    <div class="flex justify-center items-center flex-shrink-0 md:-rotate-90 transform transition-transform">
+      <div class="relative">
+        <svg class="w-12 h-12 md:w-16 md:h-16 text-primary animate-bounce" fill="none" stroke="currentColor"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+        </svg>
+      </div>
+    </div>
+    <!-- 히어릿은 이렇게 다르게 박스 -->
+    <div class="w-full flex-1 bg-primary/10 rounded-3xl p-8 border border-primary/30 flex flex-col">
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0">
+          <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+        </div>
+        <h3 class="font-wanted font-bold text-xl md:text-2xl text-gray-text-highlight break-keep">
+          히어릿은 이렇게 다르게!
+        </h3>
+      </div>
+
+      <div class="font-wanted space-y-6 flex-1">
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+          <div>
+            <h4 class="text-gray-text-highlight font-semibold break-keep">
+              읽기 대신, <span class="text-primary">듣는 방식으로 기술을 설명</span>
+            </h4>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+          <div>
+            <h4 class="text-gray-text-highlight font-semibold break-keep">
+              문서 그대로가 아닌, <span class="text-primary">이해하기 쉬운 말로 재구성</span>
+            </h4>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+          <div class="w-2 h-2 bg-primary rounded-full mt-2.5 flex-shrink-0"></div>
+          <div>
+            <h4 class="text-gray-text-highlight font-semibold break-keep">
+              모바일 환경에서도 <span class="text-primary">부담 없이 소비 가능한 콘텐츠</span>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Product Introduction - Desktop: Scroll Animation, Mobile: Static -->
 <section class="relative lg:block hidden">
   <!-- Desktop: Sticky Container -->
-  <div class="sticky top-0 h-screen flex items-center justify-center overflow-hidden">
+  <div class="sticky top-10 h-screen flex items-center justify-center overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 w-full">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         <!-- Left: Dynamic Text Content -->
         <div class="order-2 lg:order-1">
           <h2 class="font-wanted font-regular text-4xl md:text-5xl text-gray-text-highlight mb-6">
-            빠르게 변하는 IT 산업<br/>
+            빠르게 변하는 IT<br/>
             <span class="font-extrabold text-primary">팟캐스트로 쉽게 공부하자!</span>
           </h2>
 
@@ -482,7 +597,8 @@
               </div>
               <div class="font-wanted">
                 <h3 class="font-semibold text-gray-text-highlight mb-2">핵심 CS 지식 & 기술 문서</h3>
-                <p class="text-gray-text-muted text-sm">혼자 공부하기 어려운 <span class="font-semibold text-primary">CS 지식</span>을 음성으로 쉽게!<br> Java, Kotlin, TDD 등 다양한 분야를
+                <p class="text-gray-text-muted text-sm">혼자 공부하기 어려운 <span
+                  class="font-semibold text-primary">CS 지식</span>을 음성으로 쉽게!<br> Java, Kotlin, TDD 등 다양한 분야를
                   만나보세요</p>
               </div>
             </div>
@@ -520,7 +636,8 @@
         <div class="order-1 lg:order-2 flex justify-center">
           <div class="relative">
             <div class="absolute inset-0 bg-primary/20 blur-3xl rounded-full"></div>
-            <div class="relative w-[400px] h-[889px] bg-gray-bg-deep rounded-[2rem] border border-white shadow-[0_0_0_1px_rgba(214,218,219,0.4),0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden">
+            <div
+              class="relative w-[360px] h-[800px] bg-gray-bg-deep rounded-[2rem] border border-white shadow-[0_0_0_1px_rgba(214,218,219,0.4),0_20px_60px_rgba(0,0,0,0.6)] overflow-hidden">
               <div id="screen-0" class="phone-screen absolute inset-0 transition-opacity duration-700 opacity-100">
                 <img src="img/home_screen.gif" alt="IT Trends Screen" class="w-full h-full object-cover">
               </div>
@@ -688,10 +805,10 @@
 
 <!-- Social Proof -->
 <section class="max-w-7xl mx-auto px-1 py-20">
-  <h2 class="font-wanted font-bold text-4xl text-gray-text-highlight text-center mb-12">실제 사용 후기</h2>
+  <h2 class="font-wanted font-black text-4xl text-gray-text-highlight text-center mb-12">실제 사용 후기</h2>
 
   <!-- 첫번째 후기 -->
-  <div class="flex gap-6 overflow-x-auto review-scroll pb-6">
+  <div id="review-track" class="flex gap-6 overflow-x-auto review-scroll pb-6">
     <div
       class="min-w-[320px] sm:min-w-[400px] lg:min-w-[450px] bg-gray-bg-surface rounded-2xl p-6 border border-primary/10">
       <div class="flex gap-1 mb-4">
@@ -875,53 +992,205 @@
     </div>
   </div>
 </section>
+<script>
+  const track = document.getElementById('review-track');
+
+  let speed = 1; // 숫자 키우면 더 빠름
+  let rafId;
+
+  function autoScroll() {
+    track.scrollLeft += speed;
+
+    // 끝에 도달하면 처음으로 순간 이동
+    if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 1) {
+      track.scrollLeft = 0;
+    }
+
+    rafId = requestAnimationFrame(autoScroll);
+  }
+
+  autoScroll();
+
+  // 마우스 올리면 멈춤
+  track.addEventListener('mouseenter', () => {
+    cancelAnimationFrame(rafId);
+  });
+
+  // 마우스 나가면 다시 시작
+  track.addEventListener('mouseleave', () => {
+    autoScroll();
+  });
+</script>
+
+<!-- FAQ Section -->
+<section class="max-w-5xl mx-auto px-6 py-20">
+  <h2 class="font-wanted font-black text-4xl text-gray-text-highlight text-center mb-12">
+    자주 묻는 질문
+  </h2>
+
+  <div class="space-y-4">
+
+    <!-- FAQ 1 -->
+    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
+      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(0)">
+        <span class="font-semibold text-gray-text-highlight text-lg">Q. 회원가입이 필요한가요?</span>
+        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
+          비회원도 바로 이용할 수 있습니다. 회원가입 시 북마크, 재생 기록 관리 기능을 더 편리하게 사용할 수 있습니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 2 -->
+    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
+      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(1)">
+        <span class="font-semibold text-gray-text-highlight text-lg">Q. 콘텐츠는 누가 만드나요?</span>
+        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
+          hEARit 팀이 공식 문서, 기술 블로그, 컨퍼런스 발표 등을 엄선하여 NotebookLM을 통해 제작합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 3 -->
+    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
+      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(2)">
+        <span class="font-semibold text-gray-text-highlight text-lg">Q. 어떤 사람에게 추천하나요?</span>
+        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
+          출퇴근 시간을 활용하고 싶은 개발자, 최신 IT 트렌드를 빠르게 따라가고 싶은 분, 긴 글 읽기가 부담스러운 분들에게 추천합니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 4 -->
+    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
+      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(3)">
+        <span class="font-semibold text-gray-text-highlight text-lg">Q. 오프라인에서도 들을 수 있나요?</span>
+        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
+          현재는 온라인 스트리밍만 지원합니다. 오프라인 다운로드 기능은 곧 추가될 예정입니다.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 5 -->
+    <div class="bg-gray-bg-surface rounded-2xl border border-primary/10 overflow-hidden">
+      <button class="faq-button w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-bg-surface/80 transition-all" onclick="toggleFAQ(4)">
+        <span class="font-semibold text-gray-text-highlight text-lg">Q. 무료인가요?</span>
+        <svg class="faq-icon w-6 h-6 text-primary transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+      <div class="faq-content max-h-0 overflow-hidden transition-all duration-300">
+        <div class="px-6 pb-5 text-gray-text-main leading-relaxed">
+          모든 콘텐츠는 무료입니다. 현재 수익 창출을 하고 있지 않습니다. 편하게 사용해주세요!
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  function toggleFAQ(index) {
+    const allContents = document.querySelectorAll('.faq-content');
+    const allIcons = document.querySelectorAll('.faq-icon');
+    const currentContent = allContents[index];
+    const currentIcon = allIcons[index];
+
+    // 클릭한 FAQ가 이미 열려있으면 닫기
+    if (currentContent.style.maxHeight && currentContent.style.maxHeight !== '0px') {
+      currentContent.style.maxHeight = '0px';
+      currentIcon.style.transform = 'rotate(0deg)';
+    } else {
+      // 모든 FAQ 닫기
+      allContents.forEach((content, i) => {
+        content.style.maxHeight = '0px';
+        allIcons[i].style.transform = 'rotate(0deg)';
+      });
+
+      // 클릭한 FAQ 열기
+      currentContent.style.maxHeight = currentContent.scrollHeight + 'px';
+      currentIcon.style.transform = 'rotate(180deg)';
+    }
+  }
+</script>
 
 <!-- Footer -->
-<footer class="bg-gray-bg-surface border-t border-gray-bg-deep py-12">
+<footer class="bg-gray-bg-surface border-t border-gray-bg-deep py-8">
   <div class="max-w-7xl mx-auto px-6">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
 
-      <!-- Left: Logo & Description -->
+    <!-- Main Footer Content -->
+    <div class="flex flex-col lg:flex-row items-center justify-between gap-4 mb-6">
+
+      <!-- Left: Logo -->
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 bg-primary rounded-xl glow-purple flex items-center justify-center">
           <img src="img/logo.png" alt="hEARit Logo" class="w-10 h-10 object-contain">
         </div>
-        <div>
-          <span class="text-gray-text-highlight font-prompt font-bold text-xl">hEARit</span>
-          <p class="text-gray-text-muted text-sm">개발자를 위한 팟캐스트</p>
-        </div>
+        <span class="text-gray-text-highlight font-prompt font-bold text-xl">hEARit</span>
       </div>
 
-      <!-- Center: Made by -->
-      <div class="text-center">
-        <p class="text-gray-text-muted text-sm">
-          Made with <span class="text-primary">♥</span> by
-          <span class="text-gray-text-highlight font-semibold"><br/>미플,조이,비비<br/>멍구,사나,가콩,벡터</span>
+      <!-- Center: Info -->
+      <div class="text-center lg:text-left">
+        <p class="text-gray-text-muted text-xs lg:text-sm">
+          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c380c7ad87ee902f131a26" class="hover:text-primary transition-colors">이용약관</a>
+          <span class="mx-2">|</span>
+          <a href="https://glistening-eclipse-58b.notion.site/2c5d39b9c3c3809abc3bf37ac3b148f7" class="hover:text-primary transition-colors">개인정보처리방침</a>
         </p>
-        <p class="text-gray-text-muted text-xs mt-1">© 2025 hEARit. All rights reserved.</p>
+        <p class="text-gray-text-muted text-xs mt-2">
+          Made with <span class="text-primary">♥</span> by 미플,조이,비비,멍구,사나,가콩,벡터
+        </p>
+        <p class="text-gray-text-muted text-xs mt-2">
+        <span class="block lg:inline mt-1 lg:mt-0">© 2025 hEARit. All rights reserved.</span>
+        </p>
       </div>
 
       <!-- Right: Social Links -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
+        <a href="mailto:hearit2025@gmail.com"
+           class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
+           title="이메일 문의">
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+          </svg>
+        </a>
+
         <a href="https://github.com/woowacourse-teams/2025-hEARit" target="_blank" rel="noopener noreferrer"
-           class="w-10 h-10 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group">
-          <svg class="w-5 h-5 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor"
-               viewBox="0 0 24 24">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+           class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
+           title="GitHub">
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
           </svg>
         </a>
 
         <a href="https://velog.io/@hearit/posts" target="_blank" rel="noopener noreferrer"
-           class="w-10 h-10 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group">
-          <svg class="w-5 h-5 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor"
-               viewBox="0 0 24 24">
-            <path
-              d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.149-1.711-9.628h-2.25V6.25h4.755z"/>
+           class="w-9 h-9 bg-gray-bg-deep hover:bg-primary/20 rounded-lg flex items-center justify-center transition-all group"
+           title="Velog">
+          <svg class="w-4 h-4 text-gray-text-muted group-hover:text-primary transition-colors" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M3 0C1.338 0 0 1.338 0 3v18c0 1.662 1.338 3 3 3h18c1.662 0 3-1.338 3-3V3c0-1.662-1.338-3-3-3H3zm6.883 6.25c.63 0 1.005.3 1.125.9l1.463 8.303c.465-.615.846-1.133 1.146-1.553.465-.66.893-1.418 1.283-2.273.405-.855.608-1.62.608-2.295 0-.405-.113-.727-.338-.967-.21-.255-.608-.577-1.193-.967.6-.765 1.35-1.148 2.25-1.148.48 0 .878.143 1.193.428.33.285.494.704.494 1.26 0 .93-.39 2.093-1.17 3.488-.765 1.38-2.241 3.457-4.431 6.232l-2.227.149-1.711-9.628h-2.25V6.25h4.755z"/>
           </svg>
         </a>
       </div>
 
     </div>
+
   </div>
 </footer>
